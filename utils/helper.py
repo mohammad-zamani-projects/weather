@@ -10,6 +10,5 @@ SMTP_SERVER = "smtp.gmail.com"
 PORT = 465
 SENDER_EMAIL = "check.weather.email.sender@gmail.com"
 RECEIVER_EMAIL = "mohammad_zamani_alluses@yahoo.com"
-PASSWORD = getpass("please enter your password: ",)
+PASSWORD = "qqqg iyub luqr fswc"
 
-my_pass = "qqqg iyub luqr fswc"
