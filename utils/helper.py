@@ -7,8 +7,9 @@ URL = MAIN_URL + "appid=" + API_KEY + "&q=" + LOCATION
 
 
 SMTP_SERVER = "smtp.gmail.com"
-PORT = 456
+PORT = 465
 SENDER_EMAIL = "check.weather.email.sender@gmail.com"
 RECEIVER_EMAIL = "mohammad_zamani_alluses@yahoo.com"
 PASSWORD = getpass("please enter your password: ",)
 
+my_pass = "qqqg iyub luqr fswc"
