@@ -1,11 +1,12 @@
 import json
-import os
+# import os
 import requests
 import smtplib
 import ssl
 
 
 from email.message import EmailMessage
+# from kavenegar import *
 from weather.utils import helper
 
 
@@ -13,15 +14,39 @@ def get_weather_json():
     response = requests.get(helper.URL)
     data = json.loads(response.text)
     return data
+    # print(os.popen(f"curl wttr.in/{helper.LOCATION}").read())  # It is just for fun in cli output!
 
-    # print(os.popen(f"curl wttr.in/{helper.LOCATION}").read())
 
+def report_weather_data(data):
+    if "rain" in data["weather"][0]["description"] or "drizzle" in data["weather"][0]["description"]:
+        message = "It's rainy, so remember to bring an umbrella!"
+        send_message(message)
 
-def send_mail():
-    subject = "Test email"
-    message = """
-    This is just a test email. if you see this message be happy!
+    if (data["main"]["temp"] - 273.15) <= 3:
+        message = "It is very cold, please wear warm clothes"
+        send_message(message)
+
+    weather_title = data['weather'][0]['main']
+    weather = data['weather'][0]['description']
+    temp = int(data['main']['temp'] - 273.15)
+    min_temp = int(data['main']['temp_min'] - 273.15)
+    max_temp = int(data['main']['temp_max'] - 273.15)
+    message = f"""
+    It is {weather_title} today, {weather}.
+    The temperature is {temp} degrees Celsius.minimum {min_temp} and maximum {max_temp} degrees Celsius.
     """
+    send_mail(message)
+
+
+def send_message(message):
+    # from kavenegar import *
+    # api = KavenegarAPI('56594A305046422B656566785A4543344A73382B55437043356C314D35687143587052453278616F4C424D3D')
+    # params = { 'sender' : '1000689696', 'receptor': '09127762933', 'message' :'.وب سرویس پیام کوتاه کاوه نگار' }
+    # response = api.sms_send( params)
+    pass
+
+def send_mail(message):
+    subject = "Today's weather"
 
     email = EmailMessage()
     email['From'] = helper.SENDER_EMAIL
