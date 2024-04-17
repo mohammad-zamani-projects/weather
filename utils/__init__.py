@@ -1,12 +1,12 @@
 import json
+import kavenegar
 # import os
 import requests
 import smtplib
 import ssl
 
-
+from kavenegar import *
 from email.message import EmailMessage
-# from kavenegar import *
 from weather.utils import helper
 
 
@@ -38,12 +38,25 @@ def report_weather_data(data):
     send_mail(message)
 
 
-def send_message(message):
-    # from kavenegar import *
-    # api = KavenegarAPI('56594A305046422B656566785A4543344A73382B55437043356C314D35687143587052453278616F4C424D3D')
-    # params = { 'sender' : '1000689696', 'receptor': '09127762933', 'message' :'.وب سرویس پیام کوتاه کاوه نگار' }
-    # response = api.sms_send( params)
-    pass
+
+
+def send_message(message=None):
+    try:
+        api = KavenegarAPI('56594A305046422B656566785A4543344A73382B55437043356C314D35687143587052453278616F4C424D3D')
+        params = {
+            'sender': '10004346',
+            'receptor': '09127762933',
+            'message': 'Kaveh specialized Web service '
+        }
+        response = api.sms_send(params)
+        print(str(response))
+
+    except APIException as e:
+        print(str(e))
+    except HTTPException as e:
+        print(str(e))
+
+
 
 def send_mail(message):
     subject = "Today's weather"
