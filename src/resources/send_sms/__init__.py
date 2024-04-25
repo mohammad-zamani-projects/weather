@@ -18,4 +18,3 @@ def send_message(message=None):
         print(str(e))
     except kavenegar.HTTPException as e:
         print(str(e))
-
